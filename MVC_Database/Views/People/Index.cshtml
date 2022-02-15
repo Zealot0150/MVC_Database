@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model PeopleViewModel
+@using MVC_Database.ViewModels;
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Namn
+            </th>
+            <th>
+                Telefon
+            </th>
+            <th>
+                Stad
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PeopleList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tele)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "People", new { Id = item.Id });
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<form asp-controller="People" asp-action="Search" method="post">
+    <div class="form-group">
+        <label class="control-label">Sök</label>
+        <input asp-for=@Model.SearchCriteria class="form-control" />
+        <input type="submit" value="Search" />
+    </div>
+</form>
+
+<form asp-controller="People" asp-action="Create" method="get">
+    <button asp-controller="People" asp-action="Create">Skapa ny</button>
+</form>
+

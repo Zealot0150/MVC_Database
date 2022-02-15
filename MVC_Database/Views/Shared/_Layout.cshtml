@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/content/css/Site.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+        <div class="jumbotron text-center">
+            <h1>Zealot 0150</h1>
+            <p>Vad är grått och kommer hinkvis?</p>
+        </div>
+
+  
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a id="brand" class="navbar-brand">Zealot 0150</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacts", "Contacts", "Home")</li>
+                    <li>@Html.ActionLink("People", "Index", "People")</li>
+                </ul>
+
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    
+
+
+
+    <div class="container" id="mainview">
+        @RenderBody()
+    </div>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Zealot 0150 &copy; @DateTime.Now.Year</a>
+                <p id="error"></p>
+                <p id="message"></p>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
