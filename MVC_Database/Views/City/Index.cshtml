@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVC_Database.Models.City>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Städer</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="City">Create New </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryId)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {id=item.CityId})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

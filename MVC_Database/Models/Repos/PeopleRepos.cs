@@ -6,6 +6,7 @@ using MVC_Database.ViewModels;
 using System.Linq.Expressions;
 using MVC_Database.Models.Services;
 using MVC_Database.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MVC_Basics.Models.Repos
 {
@@ -15,10 +16,9 @@ namespace MVC_Basics.Models.Repos
         public PeopleRepos(AppDbContext _appDbContext)
         {
             appDbContext = _appDbContext;
-
         }
 
-        IEnumerable<People> IServicePeople.AllPeople
+        IEnumerable<Person> IServicePeople.AllPeople
         {
             get
             {
@@ -30,8 +30,8 @@ namespace MVC_Basics.Models.Repos
         {
             try
             {
-                People people = new People();
-                people.City = peopleVM.City;
+                Person people = new();
+                people.CityId = peopleVM.CityId;
                 people.Name = peopleVM.Name;
                 people.Tele = peopleVM.Tele;
                 appDbContext.People.Add(people);
@@ -48,8 +48,8 @@ namespace MVC_Basics.Models.Repos
         {
             try
             {
-                List<People> list = appDbContext.People.ToList();
-                People p = list.First(p => p.Id == id);
+                List<Person> list = appDbContext.People.ToList();
+                Person p = list.First(p => p.Id == id);
                 appDbContext.People.Remove(p);
                 appDbContext.SaveChanges();
 
@@ -61,12 +61,17 @@ namespace MVC_Basics.Models.Repos
             return true;
         }
 
-        People IServicePeople.GetUSer(int id)
+        SelectList IServicePeople.GetCityList()
+        {
+            return new SelectList(appDbContext.City, "CityId", "CityId");
+        }
+
+        Person IServicePeople.GetUSer(int id)
         {
             try
             {
-                List<People> list = appDbContext.People.ToList();
-                People p = list.First(p => p.Id == id);
+                List<Person> list = appDbContext.People.ToList();
+                Person p = list.First(p => p.Id == id);
                 return p;
             }
             catch (Exception)
@@ -75,14 +80,14 @@ namespace MVC_Basics.Models.Repos
             }
         }
 
-        IEnumerable<People> IServicePeople.SearchPeople(string searchText)
+        IEnumerable<Person> IServicePeople.SearchPeople(string searchText)
         {
-            List<People> list = appDbContext.People.ToList();
+            List<Person> list = appDbContext.People.ToList();
 
             if (string.IsNullOrEmpty(searchText))
                 return list;
 
-            list = list.Where(s => s.City.Contains(searchText)
+            list = list.Where(s => (s.City.ToString()??"").Contains(searchText)
                             || s.Id.ToString().Contains(searchText)
                             || s.Tele.Contains(searchText)
                             || s.Name.ToString().Contains(searchText)

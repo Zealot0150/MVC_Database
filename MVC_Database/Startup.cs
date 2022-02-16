@@ -14,6 +14,7 @@ using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVC_Basics.Models.Repos;
 using MVC_Database.Models.Services;
+using MVC_Database.Models.Repos;
 
 namespace MVC_Database
 {
@@ -42,6 +43,9 @@ namespace MVC_Database
             //                ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
             // Testing MySql injecting 
             services.AddScoped<IServicePeople, PeopleRepos>();
+            services.AddScoped<ICityService, CityRepos>();
+            services.AddScoped<ICountryService, CountryRepos>();
+
             services.AddHttpContextAccessor();
 
             services.AddDbContext<AppDbContext>(

@@ -1,0 +1,35 @@
+﻿@model MVC_Database.ViewModels.CityViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Skapa ny stad</h1>
+
+<h4>City</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityId" class="control-label">Stadens namn</label>
+                <input asp-for="CityId" class="form-control" />
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Land</label>
+                <select asp-for="Name" class="form-control"  asp-items="ViewBag.Country"></select>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" asp-controller="City"   class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

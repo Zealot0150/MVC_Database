@@ -9,7 +9,6 @@
 
         // Kom ihåg! obs!, EF power tools ger möjlighet till att se hur entity byggt upp db, finns som nuget.
 
-
         // Bara för mitt dåliga minne
         //    get-help Add-Migration
         //and
@@ -17,7 +16,9 @@
         //get-help Update-Database
 
 
-            public DbSet<People> People { get; set; }
+            public DbSet<Person> People { get; set; }
+            public DbSet<City> City { get; set; }
+            public DbSet<Country> Country { get; set; }
 
 
             public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -37,12 +38,24 @@
             {
                 base.OnModelCreating(modelBuilder);
 
-                //seed categories
-                modelBuilder.Entity<People>().HasData(new People {  Id= 1, Name = "Piff", Tele = "1234567890", City="Göteborg" });
-                modelBuilder.Entity<People>().HasData(new People { Id = 2, Name = "Puff", Tele = "1234565555", City = "Stockholme" });
-                modelBuilder.Entity<People>().HasData(new People { Id = 3, Name = "Puffspappa", Tele = "123456558", City = "Stockö" });
-                modelBuilder.Entity<People>().HasData(new People { Id = 4, Name = "Puffsmamma", Tele = "1234565559", City = "Stockvik" });
+            Country country1 = new() {  Name = "Sweden" };
+            Country country2 = new() {  Name = "Germany" };
+            City city1 = new() { CityId = "Fröölunda", CountryId = "Sweden"};
+            City city2 = new() { CityId = "Berlin", CountryId = "Germany" };
+            Person people1 = new() { Id = 1, Name = "Piff", Tele = "1234567890", CityId = "Fröölunda" };
+            Person people2 = new() { Id = 2, Name = "puff", Tele = "1234567890", CityId = "Berlin" };
+            Person people3 = new() { Id = 3, Name = "Soet gullan", Tele = "12345678190", CityId="Berlin"};
 
+            modelBuilder.Entity<Country>().HasData(country1);
+            modelBuilder.Entity<Country>().HasData(country2);
+            modelBuilder.Entity<City>().HasData(city1);
+            modelBuilder.Entity<City>().HasData(city2);
+
+            //seed categories
+                modelBuilder.Entity<Person>().HasData(people1);
+                modelBuilder.Entity<Person>().HasData(people2);
+                modelBuilder.Entity<Person>().HasData(people3);
+                
         }
     }
 }

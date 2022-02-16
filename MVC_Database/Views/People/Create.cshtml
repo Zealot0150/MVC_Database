@@ -3,10 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
-<h4>CreatePersonViewModel</h4>
+<h4>Skapa person</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,10 +25,12 @@
                 <input asp-for="Tele" class="form-control" />
                 <span asp-validation-for="Tele" class="text-danger"></span>
             </div>
+
+            @*build->clean solution, build->rebuild solution och starta om v*@
             <div class="form-group">
-                <label asp-for="City" class="control-label">Stad</label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+                <label asp-for="CityId" class="control-label">Stad</label>
+                <select asp-for="CityId" class="form-control"  asp-items="ViewBag.Citys"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
