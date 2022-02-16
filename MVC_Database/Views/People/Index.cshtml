@@ -6,8 +6,9 @@
 @model PeopleViewModel
 @using MVC_Database.ViewModels;
 
-
-
+<p>
+    <a asp-action="Create">Skapa ny</a>
+<p>
 <table class="table">
     <thead>
         <tr>
@@ -40,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Tele)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.City)
+                    @Html.DisplayFor(modelItem => item.CityId)
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", "People", new { Id = item.Id });
@@ -59,7 +60,7 @@
     </div>
 </form>
 
-<form asp-controller="People" asp-action="Create" method="get">
+@*<form asp-controller="People" asp-action="Create" method="get">
     <button asp-controller="People" asp-action="Create">Skapa ny</button>
 </form>
-
+*@

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MVC_Database.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,12 +13,10 @@ namespace MVC_Database.ViewModels
     {
         public CreatePersonViewModel()
         {
-
         }
-
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Namn är Oblicterat")]
+        [Required(ErrorMessage = "Namn är Obligerat")]
         [StringLength(100, MinimumLength = 1)]
         public string Name { get; set; }
 
@@ -24,6 +24,6 @@ namespace MVC_Database.ViewModels
         [StringLength(20, MinimumLength = 6)]
         public string Tele { get; set; }
 
-        public string City { get; set; }
+        public string CityId { get; set; }
     }
 }

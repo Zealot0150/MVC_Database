@@ -5,7 +5,7 @@ namespace MVC_Database.ViewModels
 {
     public class PeopleViewModel
     {
-        public IEnumerable<People> PeopleList { get; set; }
+        public IEnumerable<Person> PeopleList { get; set; }
         public string SearchCriteria { get; set; }
         public int SelectedUser { get; set; } 
     }

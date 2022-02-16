@@ -13,12 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
         <div class="jumbotron text-center">
             <h1>Zealot 0150</h1>
             <p>Vad är grått och kommer hinkvis?</p>
         </div>
-
   
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -31,25 +29,21 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacts", "Contacts", "Home")</li>
                     <li>@Html.ActionLink("People", "Index", "People")</li>
+                    <li>@Html.ActionLink("City", "Index", "City")</li>
+                    <li>@Html.ActionLink("Country", "Index", "Country")</li>
                 </ul>
-
             </div>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
-    
-    
-
-
 
     <div class="container" id="mainview">
         @RenderBody()
     </div>
-
-
 
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container-fluid">

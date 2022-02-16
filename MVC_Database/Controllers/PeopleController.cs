@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_Database.Models.Services;
 using MVC_Database.ViewModels;
 
@@ -14,12 +15,11 @@ namespace MVC_Database.Controllers
                 this.peopleService = peopleService;
             }
 
-
             public IActionResult Index(PeopleViewModel model)
             {
                 if (model == null || model.PeopleList == null)
                 {
-                    PeopleViewModel peopleVM = new PeopleViewModel();
+                    PeopleViewModel peopleVM = new();
                     peopleVM.PeopleList = peopleService.AllPeople;
                     return View(peopleVM);
                 }
@@ -28,12 +28,14 @@ namespace MVC_Database.Controllers
             }
 
 
-
             // GET: Create
             [HttpGet]
             public ActionResult Create()
             {
-                return View();
+            SelectList citys = peopleService.GetCityList();
+            ViewBag.Citys = citys;
+
+            return View();
             }
 
             // POST: Create
@@ -43,9 +45,10 @@ namespace MVC_Database.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    peopleService.AddUser(createViewModel);
-                    return RedirectToAction(nameof(Index));
+                    if (peopleService.AddUser(createViewModel))
+                        return RedirectToAction(nameof(Index));
                 }
+                ViewBag.Citys = peopleService.GetCityList();
                 return View(createViewModel);
             }
 
