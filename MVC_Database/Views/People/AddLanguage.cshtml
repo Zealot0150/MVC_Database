@@ -1,0 +1,31 @@
+﻿@model MVC_Database.Models.LanguagePerson
+
+
+@{
+    ViewData["Title"] = "AddLanguage";
+}
+
+<h4>Lägg till språk för person med nr </h4>@ViewBag.CurrentID
+
+@*<label asp-for="PersonId" class="control-label" data="@ViewBag.CurrentID" >@ViewBag.CurrentID</label>*@
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddLanguage">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LanguageId" class="control-label"></label>
+                <select asp-for="LanguageId" class="form-control"  asp-items="ViewBag.Name"></select> @*KRALL <--*@
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lägg till språk" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="People">Back to List</a>
+</div>

@@ -26,9 +26,20 @@ namespace MVC_Database.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CountryViewModel CVM)
         {
+            if(!ModelState.IsValid)
+                return View();
             try
             {
-                service.CreateCountry(CVM);
+                if (service.CreateCountry(CVM))
+                {
+
+                }
+                else
+                {
+                    ModelState.AddModelError("Name", "Landet finns redan");
+                    return View();
+                }
+                    
             }
             catch (System.Exception)
             {
@@ -40,6 +51,7 @@ namespace MVC_Database.Controllers
         // GET: CountryController/Create
         public ActionResult Create()
         {
+
             return View();
         }
 

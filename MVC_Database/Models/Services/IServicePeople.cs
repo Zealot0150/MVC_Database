@@ -17,5 +17,10 @@ namespace MVC_Database.Models.Services
         public Person GetUSer(int id);
 
         public SelectList GetCityList();
+        IEnumerable<string> GetLanguages(int id);
+        DetailPeopleViewModel GetDPVM(int id);
+        public SelectList GetLanguageList();
+        bool AddLangToUser(LanguagePerson lp);
+        bool DeleteLanguage(int id, string lang);
     }
 }

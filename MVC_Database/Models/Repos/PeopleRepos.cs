@@ -8,7 +8,7 @@ using MVC_Database.Models.Services;
 using MVC_Database.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace MVC_Basics.Models.Repos
+namespace MVC_Database.Models.Repos
 {
     public class PeopleRepos:IServicePeople
     {
@@ -66,6 +66,39 @@ namespace MVC_Basics.Models.Repos
             return new SelectList(appDbContext.City, "CityId", "CityId");
         }
 
+        DetailPeopleViewModel IServicePeople.GetDPVM(int id)
+        {
+            Person p;
+            string country; 
+            try
+            {
+                p = appDbContext.People.First(p => p.Id == id);
+                country = appDbContext.City.First(c => c.CityId == p.CityId).CountryId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return new(p, country);
+        }
+
+        IEnumerable<string> IServicePeople.GetLanguages(int personId)
+        {
+            return
+                (from p in appDbContext.People
+                  join lp in appDbContext.LangugePerson on
+                     p.Id equals lp.PersonId
+                  where p.Id == personId
+                 select lp.LanguageId );
+        }
+
+        public SelectList GetLanguageList()
+        {
+
+            return new SelectList(appDbContext.Language, "Name", "Name");
+        }
+
+
         Person IServicePeople.GetUSer(int id)
         {
             try
@@ -93,6 +126,40 @@ namespace MVC_Basics.Models.Repos
                             || s.Name.ToString().Contains(searchText)
                             ).ToList();
             return list;
+        }
+
+        bool IServicePeople.AddLangToUser(LanguagePerson lp)
+        {
+            try
+            {
+                // should not exist dublicates
+                appDbContext.LangugePerson.Add(lp);
+                appDbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        
+        bool IServicePeople.DeleteLanguage(int id, string lang)
+        {
+            try
+            {
+                LanguagePerson lp = new ();
+                lp.LanguageId = lang;
+                lp.PersonId = id;
+                appDbContext.LangugePerson.Remove(lp);
+                appDbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            return true;
         }
     }
 }

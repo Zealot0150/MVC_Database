@@ -7,7 +7,7 @@ namespace MVC_Database.Models.Services
     {
         public IEnumerable<Country> GetAllCountries();
 
-        void CreateCountry(CountryViewModel cVM);
+        bool CreateCountry(CountryViewModel cVM);
         void Delete(string id);
     }
 }

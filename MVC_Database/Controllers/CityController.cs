@@ -31,6 +31,7 @@ namespace MVC_Database.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CityViewModel CVM)
         {
+            
             try
             {
                 cityService.CreateCity(CVM);

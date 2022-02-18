@@ -3,6 +3,7 @@
     ViewData["Title"] = "Index";
 }
 
+
 @model PeopleViewModel
 @using MVC_Database.ViewModels;
 
@@ -44,6 +45,7 @@
                     @Html.DisplayFor(modelItem => item.CityId)
                 </td>
                 <td>
+                     @Html.ActionLink("Detaljer", "Details", "People", new { Id = item.Id });
                     @Html.ActionLink("Delete", "Delete", "People", new { Id = item.Id });
                 </td>
             </tr>

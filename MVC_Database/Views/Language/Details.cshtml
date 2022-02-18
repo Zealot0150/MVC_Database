@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Språk och användare</h1>
+
+<div>
+    <h4>Användare och språk</h4>
+    <hr />
+     <p>Användare för @ViewBag.user <p></p>
+        @foreach (var item in @ViewBag.Names){
+            <p>
+                @Html.DisplayFor(modelItem => item)
+            </p>
+        }
+</div>
+<br />
+    <a asp-action="Index">Tillbaka</a>  
+

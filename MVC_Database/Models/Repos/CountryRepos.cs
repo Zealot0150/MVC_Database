@@ -15,13 +15,24 @@ namespace MVC_Database.Models.Repos
         }
 
 
-        void ICountryService.CreateCountry(CountryViewModel cVM)
+        bool ICountryService.CreateCountry(CountryViewModel cVM)
         {
-            Country c = new();
-            c.Name = cVM.Name;
+            try
+            {
+                Country c = new();
+                c.Name = cVM.Name;
 
-            appDbContext.Country.Add(c);
-            appDbContext.SaveChanges(); 
+                appDbContext.Country.Add(c);
+                appDbContext.SaveChanges();
+                return true;
+
+            }
+            catch (System.Exception)
+            {
+
+                
+            }
+            return false;
         }
 
         void ICountryService.Delete(string id)

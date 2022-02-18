@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVC_Database.Models.Language>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Språk</h1>
+
+<p>
+    <a asp-action="Create">Skapa nytt språk</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td name = "@item.Name">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Se användare", "Details", new { id=item.Name })
+                @Html.ActionLink("Delete", "Delete", new { id=item.Name })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

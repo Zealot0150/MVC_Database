@@ -12,5 +12,6 @@ namespace MVC_Database.Models.Services
         void CreateCity(CityViewModel cVM);
 
         public void Delete(string city);
+        
     }
 }

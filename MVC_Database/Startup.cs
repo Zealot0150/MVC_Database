@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore;
-using MVC_Basics.Models.Repos;
 using MVC_Database.Models.Services;
 using MVC_Database.Models.Repos;
 
@@ -45,6 +44,7 @@ namespace MVC_Database
             services.AddScoped<IServicePeople, PeopleRepos>();
             services.AddScoped<ICityService, CityRepos>();
             services.AddScoped<ICountryService, CountryRepos>();
+            services.AddScoped<ILanguageService, LanguageRepos>();
 
             services.AddHttpContextAccessor();
 
@@ -52,7 +52,9 @@ namespace MVC_Database
             dbContextOptions => dbContextOptions
                 .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);//You can set Time   
+            });
         }
 
 
@@ -68,7 +70,7 @@ namespace MVC_Database
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

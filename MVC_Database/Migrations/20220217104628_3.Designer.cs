@@ -2,6 +2,7 @@
 using MVC_Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220217104628_3")]
+    partial class _3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,7 +74,7 @@ namespace MVC_Database.Migrations
 
                     b.HasKey("Name");
 
-                    b.ToTable("Language");
+                    b.ToTable("Languge");
 
                     b.HasData(
                         new
@@ -98,18 +100,6 @@ namespace MVC_Database.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("LangugePerson");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            LanguageId = "Svenska"
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            LanguageId = "Tyska"
-                        });
                 });
 
             modelBuilder.Entity("MVC_Database.Models.Person", b =>

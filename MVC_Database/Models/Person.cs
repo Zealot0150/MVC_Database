@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVC_Database.Models
@@ -15,6 +16,8 @@ namespace MVC_Database.Models
         
         public string CityId { get; set; }
         public City City { get; set; }
+
+        public List<LanguagePerson> LanguagePersons { get; set; }
 
     }
 }
