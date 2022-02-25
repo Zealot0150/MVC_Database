@@ -4,7 +4,19 @@
 }
 
 <h1>Index</h1>
-<p>
-    Ja här borde väl det stå en massa bröte....
-</p>
-
+@if(!User.Identity.IsAuthenticated)
+            {
+                <p>Welcome not logged in!</p>
+            }
+@if(User.Identity.IsAuthenticated)
+            {
+                <p>Welcome logged in!</p>
+            }
+@if(User.IsInRole("User"))
+            {
+                <p>Welcome User!</p>
+            }
+@if(User.IsInRole("Admin"))
+            {
+                <p>Welcome Admin!</p>
+            }

@@ -14,6 +14,8 @@ using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore;
 using MVC_Database.Models.Services;
 using MVC_Database.Models.Repos;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Identity.Core;
 
 namespace MVC_Database
 {
@@ -34,7 +36,7 @@ namespace MVC_Database
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddMvc();
-
+            services.AddRazorPages();
             //services.AddControllersWithViews();
 
             //services.AddDbContext<AppDbContext>(options =>
@@ -45,12 +47,32 @@ namespace MVC_Database
             services.AddScoped<ICityService, CityRepos>();
             services.AddScoped<ICountryService, CountryRepos>();
             services.AddScoped<ILanguageService, LanguageRepos>();
+            //services.AddScoped<ILanguageService, LanguageRepos>();
+            //services.AddScoped<ILanguageService, LanguageRepos>();
+
 
             services.AddHttpContextAccessor();
 
             services.AddDbContext<AppDbContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders()
+                    .AddEntityFrameworkStores<AppDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequiredLength = 1;
+                    options.Password.RequiredUniqueChars = 1;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                }
+            );
+
 
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(20);//You can set Time   
@@ -68,8 +90,11 @@ namespace MVC_Database
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseSession();
 
             app.UseEndpoints(endpoints =>
@@ -78,6 +103,8 @@ namespace MVC_Database
                 name: "default",
                 pattern: "{Controller=Home}/{action=Index}/{id?}"
                 );
+                endpoints.MapRazorPages();
+
             });
         }
     }

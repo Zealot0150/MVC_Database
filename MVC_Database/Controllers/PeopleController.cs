@@ -102,8 +102,8 @@ namespace MVC_Database.Controllers
 
             // KRALL
             // Här körde jag en (jag vet jobbig lösning men hjärnan var tröttt)
-            IList<string> list = peopleService.GetLanguages(Id).ToList();
-            SelectList s2 = new SelectList(list, "Name", "Name");
+            // IList<string> list = peopleService.GetLanguages(Id).ToList();
+            // SelectList s2 = new SelectList(list, "Name", "Name");
 
             SelectList s = peopleService.GetLanguageList();
             ViewBag.Name = s;  // bara att byta s2 för att få smällen

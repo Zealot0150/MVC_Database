@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MVC_Database.Models.Services;
@@ -6,6 +7,7 @@ using MVC_Database.ViewModels;
 
 namespace MVC_Database.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CityController : Controller
     {
         readonly ICityService cityService;
@@ -47,6 +49,7 @@ namespace MVC_Database.Controllers
         }
 
         // GET: CityController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             try

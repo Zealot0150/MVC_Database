@@ -1,5 +1,12 @@
 ﻿<!DOCTYPE html>
 
+@using Microsoft.AspNetCore.Identity
+@using MVC_Database.Models;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,17 +35,25 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacts", "Contacts", "Home")</li>
-                    <li>@Html.ActionLink("People", "Index", "People")</li>
-                    <li>@Html.ActionLink("City", "Index", "City")</li>
-                    <li>@Html.ActionLink("Country", "Index", "Country")</li>
-                    <li>@Html.ActionLink("Language", "Index", "Language")</li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li>@Html.ActionLink("People", "Index", "People")</li>
+                         @if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("City", "Index", "City")</li>
+                            <li>@Html.ActionLink("Country", "Index", "Country")</li>
+                            <li>@Html.ActionLink("Language", "Index", "Language")</li>
+                            <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+                        }
+                    }
+                    <partial name="_LoginPartial" />
                 </ul>
             </div>
 
-            <ul class="nav navbar-nav navbar-right">
+            @*<ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Shopping Cart</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
+                <li><a  href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>*@
         </div>
     </div>
 
@@ -55,5 +70,6 @@
             </div>
         </div>
     </nav>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
