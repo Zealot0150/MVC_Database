@@ -5,7 +5,7 @@ namespace MVC_Database.Models.Services
 {
     public interface ILanguageService
     {
-        public IEnumerable<Language> GetAllLanguages();
+        public IEnumerable<LanguagePeople> GetAllLanguages();
         public bool CreateLanguage(LanguageViewModel lVM);
         void Delete(string id);
 

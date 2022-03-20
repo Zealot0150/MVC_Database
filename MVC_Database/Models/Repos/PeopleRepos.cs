@@ -79,7 +79,7 @@ namespace MVC_Database.Models.Repos
             {
                 return null;
             }
-            return new(p, country);
+            return new(p, country, null);
         }
 
         IEnumerable<string> IServicePeople.GetLanguages(int personId)

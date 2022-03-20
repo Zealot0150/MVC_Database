@@ -22,7 +22,7 @@
         public DbSet<City> City { get; set; }
         public DbSet<Country> Country { get; set; }
 
-        public DbSet<Language> Language { get; set; }
+        public DbSet<LanguagePeople> Language { get; set; }
 
         public DbSet<LanguagePerson> LangugePerson { get; set; }
 
@@ -60,8 +60,8 @@
                         .HasForeignKey(co => co.LanguageId);
 
 
-            Language language1 = new() { Name = "Svenska" };
-            Language language2 = new() { Name = "Tyska" };
+            LanguagePeople language1 = new() { Name = "Svenska" };
+            LanguagePeople language2 = new() { Name = "Tyska" };
 
             Country country1 = new() {  Name = "Sweden" };
             Country country2 = new() {  Name = "Germany" };
@@ -75,8 +75,8 @@
             LanguagePerson lp2 = new () { PersonId = 2, LanguageId = "Tyska" };
 
 
-            modelBuilder.Entity<Language>().HasData(language1);
-            modelBuilder.Entity<Language>().HasData(language2);
+            modelBuilder.Entity<LanguagePeople>().HasData(language1);
+            modelBuilder.Entity<LanguagePeople>().HasData(language2);
 
             modelBuilder.Entity<Country>().HasData(country1);
             modelBuilder.Entity<Country>().HasData(country2);

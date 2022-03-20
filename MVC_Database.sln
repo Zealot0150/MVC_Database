@@ -3,7 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_Database", "MVC_Database\MVC_Database.csproj", "{849F42E3-1BC7-42B5-A19A-617606EEB4DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC_Database", "MVC_Database\MVC_Database.csproj", "{849F42E3-1BC7-42B5-A19A-617606EEB4DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F89805CB-BD17-45BB-8F2A-29135DE38399}"
+	ProjectSection(SolutionItems) = preProject
+		firstreact\src\AddPerson.js = firstreact\src\AddPerson.js
+		firstreact\src\App.js = firstreact\src\App.js
+		firstreact\src\Details.js = firstreact\src\Details.js
+		firstreact\src\index.css = firstreact\src\index.css
+		firstreact\src\index.js = firstreact\src\index.js
+		firstreact\src\MainNav.js = firstreact\src\MainNav.js
+		firstreact\src\PeopleList.js = firstreact\src\PeopleList.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

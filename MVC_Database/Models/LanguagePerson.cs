@@ -10,7 +10,7 @@ namespace MVC_Database.Models
         public string LanguageId { get; set; }
 
         public Person Person;
-        public Language Language;
+        public LanguagePeople Language;
 
     }
 }

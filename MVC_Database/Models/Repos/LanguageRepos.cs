@@ -14,12 +14,12 @@ namespace MVC_Database.Models.Repos
             appDbContext = _appDbContext;
         }
 
-        public IEnumerable<Language> GetAllLanguages()
+        public IEnumerable<LanguagePeople> GetAllLanguages()
         {
-            List<Language> list = appDbContext.Language.ToList();
+            List<LanguagePeople> list = appDbContext.Language.ToList();
 
 
-            foreach (Language item in list)
+            foreach (LanguagePeople item in list)
             {
                 item.LanguagePersons = appDbContext.LangugePerson.Where(lp => item.Name == lp.LanguageId).ToList();
             }
@@ -41,7 +41,7 @@ namespace MVC_Database.Models.Repos
 
         bool ILanguageService.CreateLanguage(LanguageViewModel lVM)
         {
-            Language language = new() { Name = lVM.Language };
+            LanguagePeople language = new() { Name = lVM.Language };
             try
             {
                 appDbContext.Language.Add(language);
@@ -56,8 +56,8 @@ namespace MVC_Database.Models.Repos
 
         void ILanguageService.Delete(string idToRemove)
         {
-            List<Language> list = appDbContext.Language.ToList();
-            Language language = list.First( l => l.Name == idToRemove);
+            List<LanguagePeople> list = appDbContext.Language.ToList();
+            LanguagePeople language = list.First( l => l.Name == idToRemove);
             appDbContext.Language.Remove(language);
             appDbContext.SaveChanges();
         }

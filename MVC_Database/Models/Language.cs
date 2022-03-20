@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC_Database.Models
 {
-    public class Language
+    public class LanguagePeople
     {
         [Key]
         public string Name { get; set; }

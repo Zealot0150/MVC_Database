@@ -34,11 +34,13 @@ namespace MVC_Database
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddMvc();
             services.AddRazorPages();
             //services.AddControllersWithViews();
-
+            // services.AddCors();
             //services.AddDbContext<AppDbContext>(options =>
             //     options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"), 
             //                ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
@@ -47,9 +49,7 @@ namespace MVC_Database
             services.AddScoped<ICityService, CityRepos>();
             services.AddScoped<ICountryService, CountryRepos>();
             services.AddScoped<ILanguageService, LanguageRepos>();
-            //services.AddScoped<ILanguageService, LanguageRepos>();
-            //services.AddScoped<ILanguageService, LanguageRepos>();
-
+            services.AddScoped<IReactService,ReactRepos>();
 
             services.AddHttpContextAccessor();
 
@@ -90,13 +90,10 @@ namespace MVC_Database
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseSession();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -106,6 +103,13 @@ namespace MVC_Database
                 endpoints.MapRazorPages();
 
             });
+            //app.UseCors(builder =>
+            //{
+            //    builder
+            //    .AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader();
+            //});
         }
     }
 }
